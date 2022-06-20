@@ -1,0 +1,38 @@
+﻿@inject ReCaptchaVerifyClient.Models.ReCaptchaOptions options;
+@model HomeModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form method="POST" autocomplete="off">
+        <input type="hidden" name="captcha" id="captchaInput" />
+
+        <input class="form-control form-control-sm" asp-for="Name" required autocomplete="false">
+        <div id="html_element"></div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            
+            grecaptcha.render('html_element',
+                {
+                    'sitekey': '@options.SiteKey',
+                    'callback': onResponseCallBack
+                });
+        };
+
+        var onResponseCallBack = function(token) {
+            $("#captchaInput").val(token);
+        }
+        
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script>
+}
