@@ -26,11 +26,11 @@ builder.Services.AddReCaptchaClient(options =>
 
 Inject where needed
 ```c#
-		private readonly IReCaptchaClient client;
-        public HomeController(IReCaptchaClient client)
-        {
-            this.client = client;
-        }
+private readonly IReCaptchaClient client;
+public HomeController(IReCaptchaClient client)
+{
+    this.client = client;
+}
 ```
 
 ## Gotcha's
@@ -39,5 +39,6 @@ Inject where needed
 
 ## Versions
 
-* 20 Jun 2022 - v1.0.0 Initial Release
+* 20 Dec 2022 - v1.0.0 Initial Release
+* 20 Jun 2022 - v1.0.0-preview1 Initial Preview Release
 
